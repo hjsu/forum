@@ -3,5 +3,5 @@ node_modules/
 *.log
 *.map
 *.swo
-./public/javascripts/*
+public/javascripts/*
 .env

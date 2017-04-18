@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "./node_modules/webpack/bin/webpack.js -d --watch",
-    "build": "./node_modules/webpack/bin/webpack.js"
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "migrate": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js migrate:latest",
+    "initialize": "npm run migrate && npm run build"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

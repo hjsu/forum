@@ -1,7 +1,17 @@
+## Installation
+
+Global Dependencies:
+
+ - locally running postgres database (v9.5+)
+ - node and npm installed
+
 Installation:
 
+- fill out .env.example with real keys and rename to .env
 - npm install
-- npm run build
+- npm run initialize
+
+## Running
 
 Run:
 
