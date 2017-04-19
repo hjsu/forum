@@ -20,3 +20,7 @@ npm start, navigate to localhost:3000
 Watch for changes:
 
 npm run dev 
+
+## Misc details
+
+- ES2017 on the backend and frontend, using webpack to transpile

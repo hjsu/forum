@@ -5,3 +5,5 @@ node_modules/
 *.swo
 public/javascripts/*
 .env
+dist/*
+!dist/.gitkeep
