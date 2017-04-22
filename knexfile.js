@@ -4,7 +4,10 @@ module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: process.env.DB_MAIN
+    connection: process.env.DB_MAIN,
+    seeds: {
+      directory: __dirname + '/db/seeds/development'
+    }
   },
 
   staging: {
@@ -21,6 +24,13 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations'
     }
-  }
+  },
 
+  test: {
+    client: 'postgresql',
+    connection: process.env.DB_TEST,
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  }
 };

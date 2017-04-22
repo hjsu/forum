@@ -7,4 +7,5 @@ let orm = bookshelf(db);
 // https://github.com/tgriesser/bookshelf/wiki/Plugin:-Model-Registry
 orm.plugin('registry');
 orm.plugin('pagination');
+orm.plugin('virtuals');
 export default orm;
