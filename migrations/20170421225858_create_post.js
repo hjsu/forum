@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('topic_id').references('topics.id').index();
       table.integer('user_id').references('users.id').index();
+      table.text('body', 'mediumtext');
       table.timestamps(true, true);
     })
   ]);
