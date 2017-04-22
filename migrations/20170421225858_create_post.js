@@ -1,9 +1,9 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('categories', function(table){
+    knex.schema.createTable('posts', function(table){
       table.increments('id').primary();
-      table.string('name').unique().notNullable();
-      table.string('description');
+      table.integer('topic_id').references('topics.id').index();
+      table.integer('user_id').references('users.id').index();
       table.timestamps(true, true);
     })
   ]);
@@ -11,6 +11,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('categories')
+    knex.schema.dropTable('posts')
   ]);
 };

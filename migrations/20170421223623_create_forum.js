@@ -1,8 +1,10 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('categories', function(table){
+    knex.schema.createTable('forums', function(table){
       table.increments('id').primary();
-      table.string('name').unique().notNullable();
+      table.integer('category_id').references('categories.id');
+      table.integer('parent_forum').references('forums.id');
+      table.string('name').notNullable();
       table.string('description');
       table.timestamps(true, true);
     })
@@ -11,6 +13,6 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('categories')
+    knex.schema.dropTable('forums')
   ]);
 };
