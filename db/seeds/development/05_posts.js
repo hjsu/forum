@@ -30,11 +30,6 @@ exports.seed = function(knex, Promise) {
           user_id: 5,
           body: 'See title'
         } , {
-          id: 6, 
-          topic_id: 5, 
-          user_id: 2,
-          body: 'Placeholder for forum rules.'
-        } , {
           id: 7, 
           topic_id: 5, 
           user_id: 4,
