@@ -34,7 +34,7 @@ var config = [
     }
   },
   {
-    name: 'server',
+    name: 'app',
     target: 'node',
     entry: path.join(__dirname + '/app.js'),
     node: {
@@ -44,6 +44,32 @@ var config = [
     output: {
       path: __dirname + '/dist',
       filename: 'app.js',
+    },
+    externals: nodeModules,
+    module: {
+      loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
+      {
+        test: /.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2017', 'react']
+        }
+      }
+      ]
+    }
+  },
+  {
+    name: 'api',
+    target: 'node',
+    entry: path.join(__dirname + '/api/index.js'),
+    node: {
+      __filename: true,
+      __dirname: true
+    },
+    output: {
+      path: __dirname + '/dist',
+      filename: 'api.js',
     },
     externals: nodeModules,
     module: {

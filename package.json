@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/foreman/nf.js run node dist/app.js",
+    "start_app": "./node_modules/foreman/nf.js run node dist/app.js",
+    "start_api": "./node_modules/foreman/nf.js run node dist/api.js",
     "dev": "./node_modules/webpack/bin/webpack.js -d --watch",
     "build": "./node_modules/webpack/bin/webpack.js",
     "migrate": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js migrate:latest",
+    "seed": "./node_modules/foreman/nf.js run ./node_modules/bin/cli.js seed:run",
     "initialize": "npm run migrate && npm run build"
   },
   "dependencies": {
@@ -24,14 +26,20 @@
     "express": "~4.13.1",
     "foreman": "^2.0.0",
     "json-loader": "^0.5.4",
+    "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.9",
     "morgan": "~1.6.1",
     "pg": "^6.1.5",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-redux": "^4.4.5",
+    "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.5.2",
-    "serve-favicon": "~2.3.0"
+    "redux-multi": "^0.1.12",
+    "redux-thunk": "^2.2.0",
+    "restify": "^4.3.0",
+    "serve-favicon": "~2.3.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "webpack": "^1.12.14"

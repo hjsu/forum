@@ -10,16 +10,18 @@ Installation:
 - fill out .env.example with real keys and rename to .env
 - npm install
 - npm run initialize
+- npm run seed if you wish to use the sample seeded db entries
 
 ## Running
 
-Run:
+npm run start_api to start the api server
+npm run start_app to run the sample express app
 
-npm start, navigate to localhost:3000
+navigate to localhost:3000
 
-Watch for changes:
+Manually rebuilding: npm run build
 
-npm run dev 
+Watch for changes: npm run dev 
 
 ## Misc details
 

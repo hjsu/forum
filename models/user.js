@@ -5,16 +5,14 @@ const User = orm.Model.extend({
   tableName: 'users',
   hasTimeStamps: true,
   initialize() {
-    this.on('creating', this.hashPassword, this);
+    this.on('saving', this.hashPassword, this);
   },
-  hashPassword(model, attrs, options) {
-    return new Promise(function(resolve, reject) {
-      bcrypt.hash(model.attributes.password, 5, function(err, hash) {
-        if( err ) reject(err);
-        model.set('password', hash);
-        resolve(hash); // data is created only after this occurs
+  hashPassword() {
+    var self = this;
+    return bcrypt.hash(self.get('password', 10))
+      .then(hash => {
+        self.set({'password': hash});
       });
-    });
   }
 });
 
