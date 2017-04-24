@@ -8,7 +8,7 @@
     "dev": "./node_modules/webpack/bin/webpack.js -d --watch",
     "build": "./node_modules/webpack/bin/webpack.js",
     "migrate": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js migrate:latest",
-    "seed": "./node_modules/foreman/nf.js run ./node_modules/bin/cli.js seed:run",
+    "seed": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js seed:run",
     "initialize": "npm run migrate && npm run build"
   },
   "dependencies": {
