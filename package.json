@@ -1,14 +1,14 @@
 {
-  "name": "firstapp",
+  "name": "forum",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start_app": "./node_modules/foreman/nf.js run node dist/app.js",
-    "start_api": "./node_modules/foreman/nf.js run node dist/api.js",
-    "dev": "./node_modules/webpack/bin/webpack.js -d --watch",
-    "build": "./node_modules/webpack/bin/webpack.js",
-    "migrate": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js migrate:latest",
-    "seed": "./node_modules/foreman/nf.js run ./node_modules/knex/bin/cli.js seed:run",
+    "start_app": "nf run node dist/app.js",
+    "start_api": "nf run node dist/api.js",
+    "dev": "webpack -d --watch",
+    "build": "webpack",
+    "migrate": "nf run knex migrate:latest",
+    "seed": "nf run knex seed:run",
     "initialize": "npm run migrate && npm run build"
   },
   "dependencies": {
