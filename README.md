@@ -3,6 +3,7 @@
 Global Dependencies:
 
  - locally running postgres database (v9.5+)
+ - sqitch (http://sqitch.org/)
  - node and npm installed
 
 Installation:

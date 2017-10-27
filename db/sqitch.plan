@@ -4,3 +4,7 @@
 
 appschema 2017-10-26T04:50:35Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Initial scheme for forum
 users [appschema] 2017-10-27T00:55:28Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Creates users table.
+categories [appschema] 2017-10-27T04:32:46Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Creates categories table.
+forums [categories] 2017-10-27T04:41:49Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Creates forums table.
+topics [forums] 2017-10-27T04:54:14Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Create topics table.
+posts [topics users] 2017-10-27T04:58:12Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Add posts table.
