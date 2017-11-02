@@ -1,4 +1,6 @@
-import Category from '../../models/category';
+const Category = {
+
+}
 
 export const getAllCategories = (req, res, next) => {
   Category.fetchAll({withRelated: 'forums'})
