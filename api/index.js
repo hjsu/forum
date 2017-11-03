@@ -14,13 +14,10 @@ massive({
   user: process.env.PGUSER,
   password: process.env.PGPASSWORD
 }).then(instance => {
-
   var server = restify.createServer({
     name: 'Forum API',
     versions: ['0.0.1']
   })
-
-  server.db = instance;
 
   server.use(restify.bodyParser());
   server.use(restify.CORS());
@@ -50,6 +47,7 @@ massive({
           req.headers['accept-version'] = version;
       }
 
+      req.db = instance;
       return next();
   });
 
