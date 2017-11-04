@@ -11,7 +11,7 @@ export const updateForum = (id) => {
           name: res.name,
           topics: res.topics,
           description: res.description,
-          parentForumId: res.parentForumId
+          parentForumId: res.parent_forum
         })
       })
       .catch(e => {

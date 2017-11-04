@@ -11,7 +11,7 @@ Installation:
 - fill out .env.example with real keys and cp to .env
 - npm install
 - npm run initialize
-- npm run seed if you wish to use the sample seeded db entries
+- npm run db_seed if you wish to use the sample seeded db entries
 
 ## Running
 
