@@ -1,16 +1,13 @@
 import * as jwt from 'jsonwebtoken';
 import { sendWithError, errorTypes } from '../util/errors';
 
-export const auth = (req, res, next) => {
+export const auth = async(req, res, next) => {
   try {
     const token = req.header('X-Access-Token');
     const decoded = jwt.verify(token, process.env.WEBTOKEN_SECRET);
 
-    // User.where({'email': decoded})
-    //   .then(u => {
-    //     req.user = u;
-    //     next()
-    //   })
+    req.user = await req.db.findOne({email: decoded});
+    next();
   }
 
   catch(err) {

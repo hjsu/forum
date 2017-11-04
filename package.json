@@ -7,9 +7,10 @@
     "start_api": "nf run node dist/api.js",
     "dev": "webpack -d --watch",
     "build": "webpack",
-    "migrate": "nf run knex migrate:latest",
-    "seed": "nf run knex seed:run",
-    "initialize": "npm run build"
+    "db_migrate": "nf run bash db/migrate.sh",
+    "db_revert": "nf run bash db/revert.sh",
+    "db_seed": "nf run bash db/seed.sh",
+    "initialize": "npm run db_migrate && npm run build"
   },
   "dependencies": {
     "babel": "^6.5.2",
