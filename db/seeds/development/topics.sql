@@ -1,4 +1,4 @@
-INSERT INTO topics (id, forum_id, user_id, title) VALUES
+INSERT INTO topics (id, forum_id, author_id, title) VALUES
     (1,1,2,'Forum Rules'),
     (2,2,2,'Forum Rules'),
     (3,3,2,'Forum Rules'),
