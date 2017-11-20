@@ -13,7 +13,7 @@ massive({
   database: process.env.PGDATABASE,
   user: process.env.PGUSER,
   password: process.env.PGPASSWORD
-}).then(instance => {
+}, {scripts: './db/massive_scripts'}).then(instance => {
   var server = restify.createServer({
     name: 'Forum API',
     versions: ['0.0.1']
