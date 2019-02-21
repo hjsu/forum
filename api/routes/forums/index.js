@@ -1,4 +1,4 @@
-export const listTopics = async(req, res, next) => {
+export default async(req, res, next) => {
   const opts = {columns: ['id', 'name', 'parent_forum', 'description']};
   const forumData = await req.db.forums.findOne(parseInt(req.params.id), opts);
 
