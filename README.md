@@ -4,25 +4,25 @@ Global Dependencies:
 
  - locally running postgres database (v9.5+)
  - sqitch (http://sqitch.org/)
- - node and npm installed
+ - node and yarn installed
 
 Installation:
 
 - fill out .env.example with real keys and cp to .env
-- npm install
-- npm run initialize
-- npm run db_seed if you wish to use the sample seeded db entries
+- yarn install
+- yarn run initialize
+- yarn run db_seed if you wish to use the sample seeded db entries
 
 ## Running
 
-npm run start_api to start the api server
-npm run start_app to run the sample express app
+yarn run start_api to start the api server
+yarn run start_app to run the sample express app
 
 navigate to localhost:3000
 
-Manually rebuilding: npm run build
+Manually rebuilding: yarn run build
 
-Watch for changes: npm run dev 
+Watch for changes: yarn run dev 
 
 ## Misc details
 
