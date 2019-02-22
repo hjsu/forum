@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { sendWithError, errorTypes } from '../../util/errors';
 
-export const login = async(req, res, next) => {
+export default async(req, res, next) => {
   const user = await req.db.findOne({user_name: req.body.userName});
   if (!user) {
     sendWithError(req, res, errorTypes.LOGIN, 400, 'Invalid login details');

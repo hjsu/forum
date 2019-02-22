@@ -8,9 +8,9 @@ import users from './users';
 
 const router = Router();
 router.use('/categories', categories);
-// router.use('/forums', forums);
-// router.use('/topics', topics);
-// router.use('/users', users);
+router.use('/forums', forums);
+router.use('/topics', topics);
+router.use('/users', users);
 
 
 export default router;
