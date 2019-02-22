@@ -2,12 +2,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import semver from 'semver';
-import { login } from './routes/users';
-import { auth } from './middleware/auth';
 import versioner from './middleware/versioner';
 import categories from './routes/categories';
-import { listTopics } from './routes/forums';
-import { listPosts } from './routes/topics';
 import routes from './routes';
 const massive = require('massive');
 
@@ -29,10 +25,5 @@ massive({
 
   app.get({path: '/', version: '0.0.1'}, (req, res) => res.send({}));
   app.use(routes);
-  // app.post('/users/auth', login);
-  // app.get('/categories', categories);
-  // app.get('/forums/:id', listTopics);
-  // app.get('/topics/:id', listPosts);
-
   app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 });
