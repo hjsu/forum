@@ -1,4 +1,6 @@
-export const listPosts = async(req, res, next) => {
+import { Router } from 'express';
+
+const byId = async(req, res, next) => {
   const opts = {columns: ['id', 'forum_id', 'title', 'author_id']};
   const topicData = await req.db.topics.findOne(parseInt(req.params.id), opts);
 
@@ -10,3 +12,8 @@ export const listPosts = async(req, res, next) => {
 
   res.send({...topicData, posts});
 }
+
+const router = Router();
+router.get('/:id', byId);
+
+export default router;
