@@ -13,7 +13,6 @@
     "initialize": "npm run db_migrate && npm run build"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.0.0",
     "bcrypt": "^3.0.4",
     "body-parser": "~1.13.2",
     "bookshelf": "^0.10.3",
@@ -40,17 +39,18 @@
     "redux-thunk": "^2.2.0",
     "semver": "^5.6.0",
     "serve-favicon": "~2.3.0",
-    "superagent": "^3.5.2",
-    "webpack-node-externals": "^1.7.2"
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-template": "^6.26.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }
