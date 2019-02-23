@@ -1,90 +1,76 @@
-// For the backend config, consult
-// http://jlongster.com/Backend-Apps-with-Webpack--Part-I
 var webpack = require('webpack');
 var path = require('path');
-var fs = require('fs');
+var nodeExternals = require('webpack-node-externals');
 
-var nodeModules = {};
-fs.readdirSync(path.resolve(__dirname, 'node_modules'))
-    .filter(x => ['.bin'].indexOf(x) === -1)
-    .forEach(mod => { nodeModules[mod] = `commonjs ${mod}`; });
-
-var config = [
+const externals = nodeExternals();
+module.exports = [
+  {
+    mode: process.env.MODE,
+    name: 'api',
+    target: 'node',
+    externals: [externals],
+    entry: './api/index.js',
+    output: {
+      path: __dirname + '/dist',
+      filename: 'api.js',
+    },
+    module: {
+      rules: [
+        {
+          test: /.js$/,
+          loader: 'babel-loader',
+          query: {
+            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
+          },
+          exclude: /node_modules/,
+        }
+      ]
+    }
+  },
+  {
+     name: 'app',
+     target: 'node',
+     entry: './app.js',
+     output: {
+       path: __dirname + '/dist',
+       filename: 'app.js',
+     },
+     externals: externals,
+     module: {
+       rules: [
+         {
+          test: /.js$/,
+          loader: 'babel-loader',
+          query: {
+            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
+          },
+          exclude: /node_modules/,
+         }
+       ]
+     }
+   
+  },
   {
     name: 'frontend',
-    entry: path.join(__dirname + '/src/application.jsx'),
+    entry: './src/application.jsx',
     resolve: {
-      extensions: ['', '.js', '.jsx']
+      extensions: ['.js', '.jsx']
     },
     output: {
       path: __dirname + '/public/javascripts',
       filename: 'bundle.js'
     },
     module: {
-      loaders: [
+      rules: [
       {
         test: /.jsx$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2017', 'react']
-        }
-      }
-      ]
-    }
-  },
-  {
-    name: 'app',
-    target: 'node',
-    entry: path.join(__dirname + '/app.js'),
-    node: {
-      __filename: true,
-      __dirname: true
-    },
-    output: {
-      path: __dirname + '/dist',
-      filename: 'app.js',
-    },
-    externals: nodeModules,
-    module: {
-      loaders: [
-      { test: /\.json$/, loader: 'json-loader' },
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2017', 'react']
-        }
-      }
-      ]
-    }
-  },
-  {
-    name: 'api',
-    target: 'node',
-    entry: path.join(__dirname + '/api/index.js'),
-    node: {
-      __filename: true,
-      __dirname: true
-    },
-    output: {
-      path: __dirname + '/dist',
-      filename: 'api.js',
-    },
-    externals: nodeModules,
-    module: {
-      loaders: [
-      { test: /\.json$/, loader: 'json-loader' },
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2017', 'react']
+          presets: ['@babel/preset-env', '@babel/preset-react']
         }
       }
       ]
     }
   }
-];
-
-module.exports = config;
+]
