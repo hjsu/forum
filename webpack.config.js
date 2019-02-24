@@ -5,7 +5,6 @@ var nodeExternals = require('webpack-node-externals');
 const externals = nodeExternals();
 module.exports = [
   {
-    mode: process.env.MODE,
     name: 'api',
     target: 'node',
     externals: [externals],
