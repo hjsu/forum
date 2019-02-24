@@ -7,8 +7,9 @@ module.exports = [
   {
     name: 'api',
     target: 'node',
+    devtool: 'inline-source-map',
     externals: [externals],
-    entry: './api/index.js',
+    entry: './api/index.ts',
     output: {
       path: __dirname + '/dist',
       filename: 'api.js',
@@ -16,60 +17,57 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /.js$/,
-          loader: 'babel-loader',
-          query: {
-            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
-          },
+          test: /.ts$/,
+          loader: 'ts-loader',
           exclude: /node_modules/,
         }
       ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
     }
   },
   {
-     name: 'app',
-     target: 'node',
-     entry: './app.js',
-     output: {
-       path: __dirname + '/dist',
-       filename: 'app.js',
-     },
-     externals: externals,
-     module: {
-       rules: [
-         {
-          test: /.js$/,
-          loader: 'babel-loader',
-          query: {
-            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
-          },
-          exclude: /node_modules/,
-         }
-       ]
-     }
-   
-  },
-  {
-    name: 'frontend',
-    entry: './src/application.jsx',
-    resolve: {
-      extensions: ['.js', '.jsx']
-    },
+    name: 'app',
+    target: 'node',
+    devtool: 'inline-source-map',
+    entry: './app.ts',
     output: {
-      path: __dirname + '/public/javascripts',
-      filename: 'bundle.js'
+      path: __dirname + '/dist',
+      filename: 'app.js',
     },
+    externals: externals,
     module: {
       rules: [
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
+        {
+          test: /.ts$/,
+          loader: 'ts-loader',
+          exclude: /node_modules/,
         }
-      }
       ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
     }
-  }
+  },
+  // {
+  //   name: 'frontend',
+  //   entry: './src/application.tsx',
+  //   resolve: {
+  //     extensions: ['.js', '.jsx', '.ts', '.tsx']
+  //   },
+  //   output: {
+  //     path: __dirname + '/public/javascripts',
+  //     filename: 'bundle.js'
+  //   },
+  //   module: {
+  //     rules: [
+  //       {
+  //           test: /.j|ts$/,
+  //           loader: 'ts-loader',
+  //           exclude: /node_modules/,
+  //       }
+  //     ]
+  //   }
+  // }
 ]
