@@ -25,6 +25,3 @@ ReactDOM.render(
   </Provider>, 
   document.getElementById('application')
 );
-
-// for testing only
-window.store = store;

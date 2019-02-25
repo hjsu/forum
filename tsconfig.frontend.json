@@ -2,16 +2,13 @@
     "compilerOptions": {
       "outDir": "./build/",
       "noImplicitAny": false,
-      "target": "es6",
+      "target": "es5",
       "sourceMap": true,
       "allowJs": true,
-      "lib": [ "es2017"],
-      "types": ["node"],
+      "lib": [ "es2017", "dom"],
       "sourceMap": true,
       "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
       "jsx": "react"
-    },
-    "files": [
-      "api/interfaces/declarations/request.d.ts"
-    ]
+    }
 }

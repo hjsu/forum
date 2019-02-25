@@ -18,7 +18,7 @@ module.exports = [
       rules: [
         {
           test: /.ts$/,
-          loader: 'ts-loader',
+          loader: 'ts-loader?configFile=tsconfig.json',
           exclude: /node_modules/,
         }
       ]
@@ -41,7 +41,7 @@ module.exports = [
       rules: [
         {
           test: /.ts$/,
-          loader: 'ts-loader',
+          loader: 'ts-loader?configFile=tsconfig.json',
           exclude: /node_modules/,
         }
       ]
@@ -50,24 +50,24 @@ module.exports = [
       extensions: ['.ts', '.js']
     }
   },
-  // {
-  //   name: 'frontend',
-  //   entry: './src/application.tsx',
-  //   resolve: {
-  //     extensions: ['.js', '.jsx', '.ts', '.tsx']
-  //   },
-  //   output: {
-  //     path: __dirname + '/public/javascripts',
-  //     filename: 'bundle.js'
-  //   },
-  //   module: {
-  //     rules: [
-  //       {
-  //           test: /.j|ts$/,
-  //           loader: 'ts-loader',
-  //           exclude: /node_modules/,
-  //       }
-  //     ]
-  //   }
-  // }
+  {
+    name: 'frontend',
+    entry: './src/application.tsx',
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
+    },
+    output: {
+      path: __dirname + '/public/javascripts',
+      filename: 'bundle.js'
+    },
+    module: {
+      rules: [
+        {
+            test: /.j|ts(x?)$/,
+            loader: 'ts-loader?configFile=tsconfig.frontend.json',
+            exclude: /node_modules/,
+        }
+      ]
+    }
+  }
 ]
