@@ -7,8 +7,9 @@ module.exports = [
   {
     name: 'api',
     target: 'node',
+    devtool: 'inline-source-map',
     externals: [externals],
-    entry: './api/index.js',
+    entry: './api/index.ts',
     output: {
       path: __dirname + '/dist',
       filename: 'api.js',
@@ -16,44 +17,44 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /.js$/,
-          loader: 'babel-loader',
-          query: {
-            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
-          },
+          test: /.ts$/,
+          loader: 'ts-loader?configFile=tsconfig.json',
           exclude: /node_modules/,
         }
       ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
     }
   },
   {
-     name: 'app',
-     target: 'node',
-     entry: './app.js',
-     output: {
-       path: __dirname + '/dist',
-       filename: 'app.js',
-     },
-     externals: externals,
-     module: {
-       rules: [
-         {
-          test: /.js$/,
-          loader: 'babel-loader',
-          query: {
-            presets: [['@babel/preset-env', {"targets": {"node": "current"}}]]
-          },
+    name: 'app',
+    target: 'node',
+    devtool: 'inline-source-map',
+    entry: './app.ts',
+    output: {
+      path: __dirname + '/dist',
+      filename: 'app.js',
+    },
+    externals: externals,
+    module: {
+      rules: [
+        {
+          test: /.ts$/,
+          loader: 'ts-loader?configFile=tsconfig.json',
           exclude: /node_modules/,
-         }
-       ]
-     }
-   
+        }
+      ]
+    },
+    resolve: {
+      extensions: ['.ts', '.js']
+    }
   },
   {
     name: 'frontend',
-    entry: './src/application.jsx',
+    entry: './src/application.tsx',
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     output: {
       path: __dirname + '/public/javascripts',
@@ -61,14 +62,11 @@ module.exports = [
     },
     module: {
       rules: [
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
+        {
+            test: /.j|ts(x?)$/,
+            loader: 'ts-loader?configFile=tsconfig.frontend.json',
+            exclude: /node_modules/,
         }
-      }
       ]
     }
   }

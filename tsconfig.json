@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "outDir": "./build/",
+      "noImplicitAny": false,
+      "target": "es6",
+      "sourceMap": true,
+      "allowJs": true,
+      "lib": [ "es2017"],
+      "types": ["node"],
+      "sourceMap": true,
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react"
+    },
+    "files": [
+      "api/interfaces/declarations/request.d.ts"
+    ]
+}

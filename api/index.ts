@@ -23,7 +23,6 @@ massive({
   app.use(versioner);
   app.use((req, res, next) => {req.db = instance; next()});
 
-  app.get({path: '/', version: '0.0.1'}, (req, res) => res.send({}));
   app.use(routes);
   app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 });
