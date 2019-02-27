@@ -1,4 +1,6 @@
-export default async(req, res, next) => {
+import { Request, Response, NextFunction } from 'express';
+
+export default async(req : Request, res : Response, next : NextFunction) => {
   const data = await req.db.query(
     'select c.id as c_id, c.name as c_name, c.description as c_desc, f.id as f_id, f.name as f_name, ' +
     'f.description as f_desc, f.parent_forum as f_pf ' + 
