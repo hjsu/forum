@@ -5,6 +5,8 @@ import semver from 'semver';
 import versioner from './middleware/versioner';
 import categories from './routes/categories';
 import routes from './routes';
+import graphqlHTTP from 'express-graphql';
+import schema from './schema';
 const massive = require('massive');
 
 massive({
@@ -23,6 +25,9 @@ massive({
   app.use(versioner);
   app.use((req, res, next) => {req.db = instance; next()});
 
-  app.use(routes);
+  app.use(routes)
+  routes.use('/graphql', graphqlHTTP({
+    schema
+  }));
   app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 });
