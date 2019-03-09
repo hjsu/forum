@@ -6,8 +6,38 @@ export const forumType = new graphql.GraphQLObjectType({
   fields: () => ({
     id: { type: graphql.GraphQLInt },
     name: { type: graphql.GraphQLString },
-    parent_forum: { type: forumType },
-    category: { type: categoryType }
+    description: { type: graphql.GraphQLString },
+    parent_forum: { 
+      type: forumType,
+      resolver: async(parent, _, {db}) => (
+        await db.forums.findOne({id: parent.parent_forum_id}))
+    },
+    category: { 
+      type: categoryType,
+      resolver: async(parent, _,{db}) => (
+        await db.categories.findOne({id: parent.category_id}))
+    }
   })
 })
 
+const resolve = async (args, {id}, request) => {
+  if (id) {
+    return [await request.db.forums.findOne(id)];
+  }
+
+  return await request.db.forums.find(args);
+}
+
+const args = {
+  id: { type: graphql.GraphQLInt },
+  category_id: { type: graphql.GraphQLInt },
+  parent_forum_id: { type: graphql.GraphQLInt },
+}
+
+export const forumQueries = {
+  forums: {
+    type: graphql.GraphQLList(forumType),
+    args,
+    resolve
+  }
+}

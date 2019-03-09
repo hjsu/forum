@@ -8,3 +8,4 @@ categories [appschema] 2017-10-27T04:32:46Z Harshvardhan Sukthankar <hsukthankar
 forums [categories] 2017-10-27T04:41:49Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Creates forums table.
 topics [forums] 2017-10-27T04:54:14Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Create topics table.
 posts [topics users] 2017-10-27T04:58:12Z Harshvardhan Sukthankar <hsukthankar@gmail.com> # Add posts table.
+1-rename-parent-forum-col 2019-03-09T06:10:18Z d <~> # Rename parent_forum to parent_forum_id
