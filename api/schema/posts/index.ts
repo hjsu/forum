@@ -1,7 +1,7 @@
 import * as graphql from 'graphql';
 import { isEmpty } from 'ramda';
-import { topicType, topicQueries } from '../topics';
-import { userType, userQueries } from '../users';
+import { topicQueries } from '../topics';
+import { userQueries } from '../users';
 
 export const postType = new graphql.GraphQLObjectType({
   name: 'Post',
@@ -13,8 +13,8 @@ export const postType = new graphql.GraphQLObjectType({
   })
 })
 
-const resolve = async (_, args, request) => {
-  if (isEmpty(args)) throw 'Table too large for full load!';
+const resolve = async (parent, args, request) => {
+  if (!parent && isEmpty(args)) throw 'Table too large for full load!';
   return await request.db.posts.find(args);
 }
 

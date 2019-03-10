@@ -1,10 +1,12 @@
 import * as graphql from 'graphql';
+import { postQueries } from '../posts';
 
 export const userType = new graphql.GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: { type: graphql.GraphQLInt },
-    display_name: { type: graphql.GraphQLString }
+    display_name: { type: graphql.GraphQLString },
+    posts: postQueries.posts
   })
 })
 

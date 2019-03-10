@@ -1,5 +1,5 @@
 import * as graphql from 'graphql';
-import { forumType, forumQueries } from '../forums';
+import { forumQueries } from '../forums';
 
 export const categoryType = new graphql.GraphQLObjectType({
   name: 'Category',

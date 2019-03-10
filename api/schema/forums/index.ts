@@ -1,5 +1,5 @@
 import * as graphql from 'graphql';
-import { categoryType } from '../categories';
+import { categoryQueries } from '../categories';
 
 export const forumType = new graphql.GraphQLObjectType({
   name: 'Forum',
@@ -7,16 +7,8 @@ export const forumType = new graphql.GraphQLObjectType({
     id: { type: graphql.GraphQLInt },
     name: { type: graphql.GraphQLString },
     description: { type: graphql.GraphQLString },
-    parent_forum: { 
-      type: forumType,
-      resolver: async(parent, _, {db}) => (
-        await db.forums.findOne({id: parent.parent_forum_id}))
-    },
-    category: { 
-      type: categoryType,
-      resolver: async(parent, _,{db}) => (
-        await db.categories.findOne({id: parent.category_id}))
-    }
+    parent_forum: forumQueries.forums,
+    category: categoryQueries.categories,
   })
 })
 
