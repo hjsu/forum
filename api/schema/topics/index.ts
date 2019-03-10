@@ -20,13 +20,7 @@ export const topicType = new graphql.GraphQLObjectType({
   })
 })
 
-const resolve = async (args, {id}, request) => {
-  if (id) {
-    return [await request.db.topics.findOne(id)];
-  }
-
-  return await request.db.topics.find(args);
-}
+const resolve = async (_, args, req) => await req.db.topics.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt },

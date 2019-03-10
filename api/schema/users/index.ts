@@ -8,13 +8,7 @@ export const userType = new graphql.GraphQLObjectType({
   })
 })
 
-const resolve = async (args, {id}, request) => {
-  if (id) {
-    return [await request.db.users.findOne(id)];
-  }
-
-  return await request.db.users.find(args);
-}
+const resolve = async (_, args, req) => await req.db.users.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt },

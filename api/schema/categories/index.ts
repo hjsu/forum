@@ -11,13 +11,7 @@ export const categoryType = new graphql.GraphQLObjectType({
   })
 })
 
-const resolve = async (_, {id}, request) => {
-  if (id) {
-    return [await request.db.categories.findOne(id)];
-  }
-
-  return await request.db.categories.find();
-}
+const resolve = async (_, args, req) => await req.db.categories.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt }

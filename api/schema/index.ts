@@ -3,6 +3,7 @@ import { categoryQueries } from './categories';
 import { forumQueries } from './forums';
 import { userQueries } from './users';
 import { topicQueries } from './topics';
+import { postQueries } from './posts';
 
 export default new graphql.GraphQLSchema({
   query: new graphql.GraphQLObjectType({
@@ -11,7 +12,8 @@ export default new graphql.GraphQLSchema({
       ...categoryQueries,
       ...forumQueries,
       ...userQueries,
-      ...topicQueries
+      ...topicQueries,
+      ...postQueries
     }
   })
 });
