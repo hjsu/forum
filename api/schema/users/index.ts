@@ -4,24 +4,21 @@ export const userType = new graphql.GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: { type: graphql.GraphQLInt },
-    user_name: { type: graphql.GraphQLString },
-    password: { type: graphql.GraphQLString },
-    email: { type: graphql.GraphQLString },
     display_name: { type: graphql.GraphQLString }
   })
 })
 
-const resolve = async (_, {id}, request) => {
+const resolve = async (args, {id}, request) => {
   if (id) {
     return [await request.db.users.findOne(id)];
   }
 
-  return await request.db.users.find();
+  return await request.db.users.find(args);
 }
 
 const args = {
   id: { type: graphql.GraphQLInt },
-  email: { type: graphql.GraphQLString }
+  display_name: { type: graphql.GraphQLString }
 }
 
 export const userQueries = {
