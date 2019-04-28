@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
 const byId = async(req : Request, res : Response, next : NextFunction) => {
-  const opts = {columns: ['id', 'name', 'parent_forum', 'description']};
+  const opts = {columns: ['id', 'name', 'parent_forum_id', 'description']};
   const forumData = await req.db.forums.findOne(parseInt(req.params.id), opts);
 
   const topics = await req.db.query(
