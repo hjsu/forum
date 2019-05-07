@@ -34,5 +34,16 @@ export const api = {
           err ? reject(err) : resolve(res.body);
         });
     });
+  },
+
+  graphql(schema) {
+    return new Promise((resolve, reject) => {
+      request
+        .get(url +`/graphql?query=\{${schema}\}`)
+        .set('Accept', 'application/json')
+        .end( (err, res) => {
+          err ? reject(err) : resolve(res.body.data);
+        });
+    });
   }
 }
