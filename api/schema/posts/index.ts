@@ -1,7 +1,7 @@
 import * as graphql from 'graphql';
 import { isEmpty } from 'ramda';
 import { topicQuery } from '../topics';
-import { userQueries } from '../users';
+import { userQuery } from '../users';
 
 export const postType = new graphql.GraphQLObjectType({
   name: 'Post',
@@ -12,10 +12,11 @@ export const postType = new graphql.GraphQLObjectType({
       ...args,
       id: post.topic_id
     })),
-    user: userQueries((post, args) => ({
+    user: userQuery((post, args) => ({
       ...args,
       id: post.user_id
-    }))
+    })),
+    user_id: { type: graphql.GraphQLInt },
   })
 })
 

@@ -29,7 +29,7 @@ const TopicComponent = (props) => {
                 
                 <div>
                 <br/>
-                posted by: {post.author}
+                posted by: {post.user.display_name}
                 </div>
                 <hr/>
               </div>
