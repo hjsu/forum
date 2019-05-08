@@ -1,5 +1,6 @@
 import * as graphql from 'graphql';
 import { categoryQuery } from '../categories';
+import { topicQueries } from '../topics';
 
 export const forumType = new graphql.GraphQLObjectType({
   name: 'Forum',
@@ -14,6 +15,10 @@ export const forumType = new graphql.GraphQLObjectType({
     category: categoryQuery((forum, args) => ({
       ...args,
       id: forum.category_id
+    })),
+    topics: topicQueries((forum, args) => ({
+      ...args,
+      forum_id: forum.id
     }))
   })
 })

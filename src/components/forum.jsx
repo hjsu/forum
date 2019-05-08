@@ -30,7 +30,7 @@ const ForumComponent = (props) => {
                   > 
                     {topic.title}   
                 </Link> 
-                  <span>  by {topic.author}</span>
+                  <span>  by {topic.author.display_name}</span>
               </li>
             })
           }

@@ -1,6 +1,7 @@
 import * as graphql from 'graphql';
 import { forumQuery } from '../forums';
-import { userQueries } from '../users';
+import { userQuery } from '../users';
+
 export const topicType = new graphql.GraphQLObjectType({
   name: 'Topic',
   fields: () => ({
@@ -10,7 +11,7 @@ export const topicType = new graphql.GraphQLObjectType({
       ...args,
       id: topic.forum_id 
     })),
-    author: userQueries((topic, args) => ({
+    author: userQuery((topic, args) => ({
       ...args,
       id: topic.author_id
     }))
