@@ -6,21 +6,33 @@ export const userType = new graphql.GraphQLObjectType({
   fields: () => ({
     id: { type: graphql.GraphQLInt },
     display_name: { type: graphql.GraphQLString },
-    posts: postQueries.posts
+    posts: postQueries((user, args) => ({
+      ...args,
+      user_id: user.id 
+    }))
   })
 })
-
-const resolve = async (_, args, req) => await req.db.users.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt },
   display_name: { type: graphql.GraphQLString }
 }
 
-export const userQueries = {
-  users: {
-    type: graphql.GraphQLList(userType),
-    args,
-    resolve
-  }
-}
+const resolve = filterFunc => async(parent, args, req) =>
+  await req.db.users.find(filterFunc(parent, args));
+
+export const userQueries = (filterFunc = (x,y) => y) => ({
+  type: graphql.GraphQLList(userType),
+  args,
+  resolve: resolve(filterFunc)
+})
+
+const resolveOne = filterFunc => async(parent, args, req) =>
+  await req.db.users.findOne(filterFunc(parent, args));
+
+export const userQuery = (filterFunc = (x,y) => y) => ({
+  type: userType,
+  args,
+  resolve: resolveOne(filterFunc)
+})
+

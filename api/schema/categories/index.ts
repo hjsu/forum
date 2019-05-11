@@ -7,20 +7,31 @@ export const categoryType = new graphql.GraphQLObjectType({
     id: { type: graphql.GraphQLInt },
     name: { type: graphql.GraphQLString },
     description: { type: graphql.GraphQLString },
-    forums: forumQueries.forums
+    forums: forumQueries((category, args) => ({
+      ...args,
+      category_id: category.id 
+    })),
   })
 })
-
-const resolve = async (_, args, req) => await req.db.categories.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt }
 }
 
-export const categoryQueries = {
-  categories: {
-    type: graphql.GraphQLList(categoryType),
-    args,
-    resolve
-  }
-}
+const resolveOne = filterFunc => async(parent, args, req) =>
+  await req.db.categories.findOne(filterFunc(parent, args));
+
+export const categoryQuery = (filterFunc = (x,y) => y) => ({
+  type: categoryType,
+  args,
+  resolve: resolveOne(filterFunc)
+})
+
+const resolve = filterFunc => async(parent, args, req) =>
+  await req.db.categories.find(filterFunc(parent, args));
+
+export const categoryQueries = (filterFunc = (x,y) => y) => ({
+  type: graphql.GraphQLList(categoryType),
+  args,
+  resolve: resolve(filterFunc)
+})

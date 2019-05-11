@@ -1,18 +1,29 @@
 import * as graphql from 'graphql';
-import { forumQueries } from '../forums';
-import { userQueries } from '../users';
+import { forumQuery } from '../forums';
+import { userQuery } from '../users';
+import { postQueries } from '../posts';
 
 export const topicType = new graphql.GraphQLObjectType({
   name: 'Topic',
   fields: () => ({
     id: { type: graphql.GraphQLInt },
     title: { type: graphql.GraphQLString },
-    forum: forumQueries.forums,
-    author: userQueries.users
+    forum: forumQuery((topic, args) => ({
+      ...args,
+      id: topic.forum_id 
+    })),
+    forum_id: { type: graphql.GraphQLInt },
+    author: userQuery((topic, args) => ({
+      ...args,
+      id: topic.author_id
+    })),
+    author_id: { type: graphql.GraphQLInt },
+    posts: postQueries((topic, args) => ({
+      ...args,
+      topic_id: topic.id
+    }))
   })
 })
-
-const resolve = async (_, args, req) => await req.db.topics.find(args);
 
 const args = {
   id: { type: graphql.GraphQLInt },
@@ -20,10 +31,20 @@ const args = {
   forum_id: { type: graphql.GraphQLInt },
 }
 
-export const topicQueries = {
-  topics: {
-    type: graphql.GraphQLList(topicType),
-    args,
-    resolve
-  }
-}
+const resolveOne = filterFunc => async(parent, args, req) =>
+  await req.db.topics.findOne(filterFunc(parent, args));
+
+export const topicQuery = (filterFunc = (x,y) => y) => ({
+  type: topicType,
+  args,
+  resolve: resolveOne(filterFunc)
+})
+
+const resolve = filterFunc => async(parent, args, req) =>
+  await req.db.topics.find(filterFunc(parent, args));
+
+export const topicQueries = (filterFunc = (x,y) => y) => ({
+  type: graphql.GraphQLList(topicType),
+  args,
+  resolve: resolve(filterFunc)
+})

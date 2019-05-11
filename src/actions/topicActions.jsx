@@ -1,15 +1,33 @@
 import * as constants from '../constants';
 import { api } from '../util/api';
 
+const schema = (id) => `
+  topics(id: ${id}) {
+    id
+    forum_id
+    title
+    author_id
+    posts {
+      id
+      user {
+        display_name
+        id
+      }
+      body
+    }
+  }
+`
+
 export const updateTopic = (id) => {
   return dispatch => {
     dispatch({type: constants.UPDATE_TOPIC});
-    api.topicPosts(id)
+    api.graphql(schema(id))
       .then(res => {
+        const topic = res.topics[0];
         dispatch({
           type: constants.UPDATE_TOPIC_SUCCESS,
-          title: res.title,
-          posts: res.posts
+          title: topic.title,
+          posts: topic.posts
         })
       })
       .catch(e => {

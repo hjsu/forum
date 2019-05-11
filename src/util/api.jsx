@@ -2,37 +2,27 @@ import * as request from 'superagent';
 
 const url = window.apiUrl;
 
+const handleAPIResponse = (err, res, resolve, reject) => {
+  if (err) {
+    reject(err);
+    return;
+  }
+
+  if (res.errors) {
+    reject(res.errors);
+    return;
+  }
+
+  resolve(res.body.data);
+}
+
 export const api = {
-  categoryList() {
+  graphql(schema) {
     return new Promise((resolve, reject) => {
       request
-        .get(url + '/categories')
+        .get(url +`/graphql?query=\{${schema}\}`)
         .set('Accept', 'application/json')
-        .end( (err, res) => {
-          err ? reject(err) : resolve(res.body);
-        });
-    });
-  },
-
-  forumTopics(id) {
-    return new Promise((resolve, reject) => {
-      request
-        .get(url + '/forums/' + id)
-        .set('Accept', 'application/json')
-        .end( (err, res) => {
-          err ? reject(err) : resolve(res.body);
-        });
-    });
-  },
-
-  topicPosts(id) {
-    return new Promise((resolve, reject) => {
-      request
-        .get(url + '/topics/' + id)
-        .set('Accept', 'application/json')
-        .end( (err, res) => {
-          err ? reject(err) : resolve(res.body);
-        });
+        .end( (err, res) => handleAPIResponse(err, res, resolve, reject))
     });
   }
 }

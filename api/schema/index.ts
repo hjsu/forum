@@ -9,11 +9,11 @@ export default new graphql.GraphQLSchema({
   query: new graphql.GraphQLObjectType({
     name: 'Query',
     fields: {
-      ...categoryQueries,
-      ...forumQueries,
-      ...userQueries,
-      ...topicQueries,
-      ...postQueries
+      categories: categoryQueries(),
+      forums: forumQueries(),
+      users: userQueries(),
+      topics: topicQueries(),
+      posts: postQueries()
     }
   })
 });
