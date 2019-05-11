@@ -23,7 +23,6 @@ export const updateTopic = (id) => {
     dispatch({type: constants.UPDATE_TOPIC});
     api.graphql(schema(id))
       .then(res => {
-        console.log(res)
         const topic = res.topics[0];
         dispatch({
           type: constants.UPDATE_TOPIC_SUCCESS,
