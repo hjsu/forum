@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const footerStyle = {
-  backgroundColor: 'blue'
+  backgroundColor: 'lightblue'
 }
 
 const FooterComponent = (props) => {

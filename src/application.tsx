@@ -8,6 +8,7 @@ import { Forum } from './components/forum.jsx';
 import { Topic } from './components/topic.jsx';
 import { Header } from './components/header.jsx';
 import { Footer } from './components/footer.jsx';
+import SidePanel from './components/sidepanel.jsx';
 import { store, history } from './store';
 
 
@@ -15,6 +16,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
+        <SidePanel/>
         <Header/>
         <Route exact path='/' component={ForumList}/>
         <Route path='/forums/:id' component={Forum}/>
