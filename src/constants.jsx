@@ -17,3 +17,7 @@ export const LOADING = 'LOADING';
 export const LOADED = 'LOADED';
 export const LOAD_FAILED = 'LOAD_FAILED';
 export const NOT_LOADED = 'NOT_LOADED';
+
+export const TOGGLE_SIDE_PANEL = 'SHOW_SIDE_PANEL';
+export const CLOSE_SIDE_PANEL = 'CLOSE_SIDE_PANEL';
+export const OPEN_SIDE_PANEL = 'OPEN_SIDE_PANEL';

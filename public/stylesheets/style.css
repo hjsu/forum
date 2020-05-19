@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+#application {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+}
