@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "debug": ">=2.6.9",
     "ejs": "^2.6.1",
-    "express": "~4.16.4",
+    "express": "~4.17.3",
     "express-graphql": "^0.7.1",
     "foreman": "^3.0.1",
     "graphql": "^14.1.1",
